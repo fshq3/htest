@@ -29,9 +29,20 @@ using namespace std;
 	#define ctest_assert_operator(_expected,_operator,_actual) \
 	{\
 		stringstream cond,msg;\
-		cond<<#_expected<<#_operator<<#_actual;msg<<_expected<<#_operator<<_actual;\
+		cond<<#_expected<<#_operator<<#_actual;\
+		msg<<_expected<<#_operator<<_actual;\
 		ctest_assert_basic(((_expected)_operator(_actual)),"assert",cond.str(),msg.str())\
 	}
+	#define ctest_assert_array(_count,_first,_operator,_second,_ex_msg)\
+		{\
+			ctest_for(i,0,_count)\
+			{\
+				stringstream cond,msg;\
+				cond<<#_first<<"["<<i<<"]"<<#_operator<<#_second<<"["<<i<<"]";\
+				msg<<_first[i]<<#_operator<<_second[i]<<"|ex "<<_ex_msg;\
+				ctest_assert_basic(((_first[i])_operator(_second[i])),"assert",cond.str(),msg.str())\
+			}\
+		}\
 
 	#define ctest_assert_equal(_expected,_actual) ctest_assert_operator(_expected,==,_actual)
 	#define ctest_case_add(function) add(#function,&function);
@@ -119,6 +130,10 @@ CPPUNIT_ASSERT_NO_THROW(expression)：断言执行表达式expression后无异常抛出。*/
 		virtual i_suit * add(i_output *r)=0;
 		virtual void run()=0;
 	};
+
+
+
+
 
 	class c_case:public i_case
 	{
