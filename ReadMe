@@ -1,5 +1,8 @@
-暂时只有win版本：
+gui版暂时只有win版本：
 在测试工程里面将main.cpp 包含进来编译通过;
 然后添加.cpp文件，并编写测试用例（参照sample目录下sample.cpp).
 然后编译，连接，运行。应该就能成功了。
+
+
+linux下则自己重新编写main.cpp,包含htest.h,使用c_std_run::run()来运行测试
 good luck
