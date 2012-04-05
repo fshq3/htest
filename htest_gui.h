@@ -1,6 +1,7 @@
 #ifndef HTEST_GUI_H_INCLUDED
 #define HTEST_GUI_H_INCLUDED
 #include "htest.h"
+#ifdef WIN32
 #include "simple_gui.h"
 using namespace htest_lib;
 class c_gui_output:public c_std_output
@@ -114,6 +115,9 @@ public:
 		c_std_run::std_test().run();
 	}
 };
+#else
+typedef htest_lib::c_std_run c_gui_run;
+#endif
 	/*
 	测试的门面接口,继承c_std_case,并实现c_case的函数，并实例化一个对象，然后调用c_gui_run::run();运行并输出结果如:
 		class testFile:public c_std_case
