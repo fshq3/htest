@@ -16,7 +16,7 @@ using namespace std;
 	#define COLOR_RED (SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),0x0C),"")
 	#define COLOR_GREEN (SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),0x0A),"")
 	#define COLOR_YELLOW (SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),0x0E),"")
-	#define COLOR_BLUE (SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),0x09),"")
+	#define COLOR_BLUE (SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),0x0B),"")
 	#define COLOR_NONE (SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),0x07),"")
 #else	
 	#define COLOR_RED "\033[1;31m"
@@ -113,7 +113,7 @@ CPPUNIT_ASSERT_NO_THROW(expression)：断言执行表达式expression后无异常抛出。*/
             res<<type<<":"<<descript<<"\n"
                 <<message<<"\n"
                 <<"(" <<pack_name<<","<<case_name<<")"
-                <<"["<<dec<<line<<":"<<file_name<<"]"<<"\n";
+                <<"["<<dec<<line<<":"<<file_name<<"]";
             return res.str();
         }
     };

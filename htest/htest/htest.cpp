@@ -219,16 +219,17 @@ namespace htest_lib
     }
 	string c_std_output::color(string type)
 	{
-		if(MT_ERROR!=MT_OK)
+		if(type!=MT_OK)
 			return COLOR_RED;
-		return COLOR_NONE;
+		return COLOR_GREEN;
 
 	}
     void c_std_output::out(c_message msg)
     {
         counter[msg.type]++;
         if(is_accept(msg.type)){
-            sout<<"\n"<<color(msg.type)<<msg.str()<<color(MT_OK)<<".\n";
+            sout<<"\n"<<color(msg.type)<<msg.str();
+			sout<<COLOR_BLUE<<"\n________________________________________\n"<<COLOR_NONE;
 		}
     }
     bool c_std_output::is_ok()
