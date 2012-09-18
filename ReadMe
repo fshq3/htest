@@ -8,6 +8,6 @@ linux下则自己重新编写main.cpp,包含htest.h,使用c_std_run::run()来运行测试
 good luck
 
 
-	目录htest下，是另一个只支持纯命令行版本，在linux下可用性更强。且将头文件分割成一个.h和一个.cpp房子./htest/htest里面。主文件放在./htest/main/main.cpp。提供一个比较通用的makefile。可以通过这个makefile进行扩展。
+	目录htest下，是另一个只支持纯命令行版本，在linux下可用性更强。且将头文件分割成一个.h和一个.cpp放在./htest/htest里面。主文件放在./htest/main/main.cpp。提供一个比较通用的makefile。可以通过这个makefile进行扩展。
 	且，接口也有所改变。ctest_assert(_expected,_operator,_actual) ctest_assert_m(_expected,_operator,_actual,_message) 两实用接口，代替原来的ctest_assert_operator(_expected,_operator,_actual)
 	希望，不会将你搞晕，哈哈:)
