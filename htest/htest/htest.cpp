@@ -217,11 +217,19 @@ namespace htest_lib
             return true;
         return accept[type];
     }
+	string c_std_output::color(string type)
+	{
+		if(MT_ERROR!=MT_OK)
+			return COLOR_RED;
+		return COLOR_NONE;
+
+	}
     void c_std_output::out(c_message msg)
     {
         counter[msg.type]++;
-        if(is_accept(msg.type))
-            sout<<"\n"<<msg.str()<<".\n";
+        if(is_accept(msg.type)){
+            sout<<"\n"<<color(msg.type)<<msg.str()<<color(MT_OK)<<".\n";
+		}
     }
     bool c_std_output::is_ok()
     {
@@ -240,7 +248,7 @@ namespace htest_lib
     void c_std_output::start_case(i_case*pc,int index)
     {
         case_count++;
-        sout<<"\r"<<get_percent()<<"%"<<case_count<<":"<<pc->name()<<"->"<<pc->case_name(index)<<endl;
+        sout<<"\r"<<COLOR_NONE<<get_percent()<<"%"<<case_count<<":"<<pc->name()<<"->"<<pc->case_name(index)<<endl;
     }
     void c_std_output::end_case(i_case*,int index)
     {

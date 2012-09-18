@@ -49,7 +49,7 @@ using namespace std;
     {\
         stringstream cond;\
         cond<<#_expected<<#_operator<<#_actual\
-        <<COLOR_YELLOW<<"{"<<_expected<<#_operator<<_actual<<"}"<<COLOR_NONE;\
+        <<"{"<<_expected<<#_operator<<_actual<<"}";\
         ctest_assert_basic(((_expected)_operator(_actual)),"assert",cond.str(),_message)\
     }
     #define ctest_assert(_expected,_operator,_actual) ctest_assert_m(_expected,_operator,_actual,"");\
@@ -110,16 +110,10 @@ CPPUNIT_ASSERT_NO_THROW(expression)：断言执行表达式expression后无异常抛出。*/
         std::string str()
         {
             stringstream res;
-            if(type=="ok"){
-                res<<COLOR_GREEN;
-            }else{
-                res<<COLOR_RED;
-            }
             res<<type<<":"<<descript<<"\n"
                 <<message<<"\n"
                 <<"(" <<pack_name<<","<<case_name<<")"
                 <<"["<<dec<<line<<":"<<file_name<<"]"<<"\n";
-            res<<COLOR_NONE;
             return res.str();
         }
     };
@@ -137,7 +131,7 @@ CPPUNIT_ASSERT_NO_THROW(expression)：断言执行表达式expression后无异常抛出。*/
         virtual std::string test_regist()=0;
         virtual std::string name()=0;//本测试包名称
         virtual std::string case_name(int index)=0;//测试用例名称
-
+		virtual ~i_case(){}
     };
     class i_output
     {
@@ -147,7 +141,7 @@ CPPUNIT_ASSERT_NO_THROW(expression)：断言执行表达式expression后无异常抛出。*/
         virtual void start_case(i_case*,int index)=0;
         virtual void end_case(i_case*,int index)=0;
         virtual void out(c_message msg)=0;
-
+		virtual ~i_output(){}
     };
     class i_suit
     {
@@ -155,6 +149,7 @@ CPPUNIT_ASSERT_NO_THROW(expression)：断言执行表达式expression后无异常抛出。*/
         virtual i_suit * add(i_case *c)=0;
         virtual i_suit * add(i_output *r)=0;
         virtual void run()=0;
+		virtual ~i_suit(){}
     };
 
 
@@ -253,6 +248,7 @@ CPPUNIT_ASSERT_NO_THROW(expression)：断言执行表达式expression后无异常抛出。*/
 
             c_std_output& set_accept(std::string type,bool condition);
             bool is_accept(std::string type);
+			string color(string type);
             virtual void out(c_message msg);
             bool is_ok();
             double get_percent();
